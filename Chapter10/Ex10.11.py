@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 """
- Write a function called in_bisect that takes a sorted list and a target
- value and returns True if the word is in the list and False if it’s not.
+ Two words are a "reverse pair" if each is the reverse of the other. Write
+ a program that finds all the reverse pairs in the word list.
 """
 
 
@@ -26,9 +26,21 @@ def bef_aft(word1, word2):
     tmp_list.append(word2)
     tmp_list.sort()
     if tmp_list[0] == word1:
-        return 1 #  if word1 is before word2
+        return 1  # if word1 is before word2
     else:
         return 2
 
 
-print(in_bisect(["atodor", "boro", "emoro", "ilian", "lgosho", "petko"], "petko"))
+def find_rev_pair():
+    fin = open("../Chapter9/words.txt")
+    word_list = []
+    for words in fin:
+        sword = words.strip()
+        word_list.append(sword)
+    for swords in word_list:
+        rword = swords[::-1]
+        if in_bisect(word_list, rword):
+            print(swords, rword)
+
+
+find_rev_pair()
