@@ -26,9 +26,15 @@ def bef_aft(word1, word2):
     tmp_list.append(word2)
     tmp_list.sort()
     if tmp_list[0] == word1:
-        return 1 #  if word1 is before word2
+        return 1  # if word1 is before word2
     else:
         return 2
 
 
-print(in_bisect(["atodor", "boro", "emoro", "ilian", "lgosho", "petko"], "petko"))
+if __name__ == '__main__':
+    fin = open("../Chapter9/words.txt")
+    li = []
+    for words in fin:
+        swords = words.strip()
+        li.append(swords)
+    print(in_bisect(li, "aaa"))
