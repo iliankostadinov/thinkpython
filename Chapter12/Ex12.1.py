@@ -7,7 +7,7 @@
 
 
 def most_frequent(s):
-    # enter characters in dict as val and key how many times they are met
+    # enter characters in dict as key and val how many times they are met
     d = {}
     for k in s:
         val = d.setdefault(k)
