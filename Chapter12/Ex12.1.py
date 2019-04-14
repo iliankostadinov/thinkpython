@@ -23,13 +23,13 @@ def most_frequent(s):
             inverse_d[val] = [key]
         else:
             inverse_d[val].append(key)
-    # sort kyes and enter them in list
+    # sort keys and enter them in list
     li = []
     for i in sorted(inverse_d):
         li.append(i)
-    # print inveerst frequence of characters
+    # print inverst frequence of characters
     for i in reversed(li):
         print(inverse_d[i])
 
 
-most_frequent("mamaiklvmmm")
+rost_frequent("mamaiklvmmm")
