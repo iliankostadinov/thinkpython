@@ -32,4 +32,4 @@ if __name__ == "__main__":
     # print longest values in d first
     b = [i[1] for i in reversed(list_with_elements)]
     for k in b:
-        print(d[k])
+        print(len(k), d[k])
