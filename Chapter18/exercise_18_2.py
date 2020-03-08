@@ -73,9 +73,21 @@ class Deck(object):
         for i in range(num):
             hand.add_card(self.pop_card())
 
+    def deal_hands(self, num_hands, num_cards):
+        """Create appropriate number of Hand objects,
+        deal apropriate number of cards per hand,
+        and return list of Hands.
 
+        num_hands: number of hands
+        num_cards: number of cards per hand
+        """
+        list_of_hands = []
+        for i in range(num_hands):
+            new_hand = Hand()
+            self.move_cards(new_hand, num_cards)
+            list_of_hands.append(new_hand)
 
-
+        return list_of_hands
 
 
 class Hand(Deck):
@@ -84,3 +96,32 @@ class Hand(Deck):
     def __init__(self, label=''):
         self.cards = []
         self.label = label
+
+
+def find_defining_class(obj, method_name):
+    """Finds and returns the class object that will provide
+    the definition of method_name (as a string) if it is
+    invoked on obj.
+
+    obj: any python object
+    method_name: string method name
+    """
+    for ty in type(obj).mro():
+        if method_name in ty.__dict__:
+            return ty
+    return None
+
+
+if __name__ == '__main__':
+    deck = Deck()
+    deck.shuffle()
+
+    hand = Hand()
+    print(find_defining_class(hand, 'shuffle'))
+
+    deck.move_cards(hand, 5)
+    hand.sort()
+    print(hand)
+    dealed = deck.deal_hands(4, 3)
+    for i in dealed:
+        print(i)
