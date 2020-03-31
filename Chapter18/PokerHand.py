@@ -166,20 +166,49 @@ class PokerHand(Hand):
             return True
         return False
 
+    def classify(self):
+        """figures out the highest-value classification for a hand
+           and sets the label attribute accordingly"""
+        if self.has_pair():
+            self.label = "Pair"
+        if self.has_two_pair():
+            self.label = "Two pair"
+        if self.has_three_of_a_kind():
+            self.label = "Three of a kind"
+        if self.has_straight():
+            self.label = "Straight"
+        if self.has_flush():
+            self.label = "Flush"
+        if self.has_full_house():
+            self.label = "Full house"
+        if self.has_four_of_a_kind():
+            self.label = "Four of a kind"
+        if self.has_straight_flush():
+            self.label = "Straight flush"
+        return self.label
+
 
 if __name__ == '__main__':
-    # make a deck
-    deck = Deck()
-    deck.shuffle()
 
-    # deal the cards and classify the hands
-    for i in range(7):
-        hand = PokerHand()
-        deck.move_cards(hand, 7)
-        hand.sort()
-        print(hand)
-        print(hand.has_flush())
-        print(hand.has_two_pair())
-        print(hand.has_full_house())
-        print(hand.has_straight_flush())
-        print('')
+    HIST_OF_HANDS = {}
+
+    def deal_hands():
+        """Count the number of each classified hand"""
+        # make a deck
+        deck = Deck()
+        deck.shuffle()
+
+        # deal the cards and classify the hands
+        for k in range(7):
+            hand = PokerHand()
+            deck.move_cards(hand, 7)
+            HIST_OF_HANDS[hand.classify()] = \
+                HIST_OF_HANDS.get(hand.classify(), 0) + 1
+            # print(hand)
+            # print(hand.classify())
+            # print('')
+            # print('')
+
+    for i in range(10):
+        deal_hands()
+    print(HIST_OF_HANDS)
